@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: asia-south1-docker.pkg.dev/learning-481011/learning/myapp
   pullPolicy: Always
-  tag: cd340f0
+  tag: c03e276
 service:
   type: ClusterIP
   port: 80
