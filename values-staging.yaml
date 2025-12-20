@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: asia-south1-docker.pkg.dev/learning-481011/k8-final/k8-final-stag
   pullPolicy: Always
-  tag: f1d9639
+  tag: 2e3f2b8
 service:
   type: ClusterIP
   port: 80
@@ -15,9 +15,8 @@ resources:
     cpu: 500m
     memory: 512Mi
   requests:
-    cpu: "200m"
-    memory: "200Mi"
-
+    cpu: 200m
+    memory: 200Mi
 readinessProbe:
   httpGet:
     path: /health
