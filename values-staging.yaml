@@ -1,8 +1,8 @@
 replicaCount: 1
 image:
-  repository: asia-south1-docker.pkg.dev/learning-481011/learning/myapp
+  repository: asia-south1-docker.pkg.dev/learning-481011/k8-final/k8-final-stag
   pullPolicy: Always
-  tag: c2fb418
+  tag: 40466c9
 service:
   type: ClusterIP
   port: 80
