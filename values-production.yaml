@@ -1,24 +1,19 @@
 replicaCount: 2
-
 image:
-  repository: "asia-south1-docker.pkg.dev/learning-481011/learning/myapp"
+  repository: asia-south1-docker.pkg.dev/learning-481011/k8-final/k8-final-prod
   pullPolicy: Always
-  # imagePullSecret: regcred
-  tag: ""   # overwritten by CI
-
+  tag: efc1aec
 service:
   type: ClusterIP
   port: 80
   targetPort: 8080
-
 ingress:
   enabled: true
-  host: ""   # no domain now
-
+  host: ''
 resources:
   limits:
-    cpu: "500m"
-    memory: "512Mi"
+    cpu: 500m
+    memory: 512Mi
   requests:
     cpu: "200m"
     memory: "200Mi"
@@ -30,23 +25,20 @@ readinessProbe:
   initialDelaySeconds: 5
   periodSeconds: 10
   failureThreshold: 3
-
 livenessProbe:
   httpGet:
     path: /health
     port: 8080
   initialDelaySeconds: 15
   periodSeconds: 20
-
 env:
   - name: PORT
-    value: "8080"
+    value: '8080'
   - name: JWT_SECRET
     valueFrom:
       secretKeyRef:
         name: prod-pod-env-secret
         key: JWT_SECRET
-
 hpa:
   enabled: true
   minReplicas: 1
