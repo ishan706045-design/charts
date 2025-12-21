@@ -43,3 +43,7 @@ hpa:
   minReplicas: 1
   maxReplicas: 1
   targetCPUUtilizationPercentage: 90
+backendConfig:
+  enabled: true
+  healthCheckPath: /api/health
+  port: 8080 
