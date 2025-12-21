@@ -1,28 +1,21 @@
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: {{ include "my-express-app.fullname" . }}
-#   labels:
-#     app: {{ include "my-express-app.name" . }}
-# spec:
-#   type: {{ .Values.service.type }}
-#   selector:
-#     app: {{ include "my-express-app.name" . }}
-#   ports:
-#     - protocol: TCP
-#       port: {{ .Values.service.port }}
-#       targetPort: {{ .Values.service.targetPort }}
-#       nodePort: {{ .Values.service.nodePort }}
 apiVersion: v1
 kind: Service
 metadata:
   name: {{ include "my-express-app.fullname" . }}
+  annotations:
+    # Required for GCE Ingress (NEG)
+    cloud.google.com/neg: '{"ingress": true}'
+
+    # 🔴 THIS is what was missing (attach BackendConfig)
+    {{- if .Values.backendConfig.enabled }}
+    cloud.google.com/backend-config: |
+      {"default":"{{ include "my-express-app.fullname" . }}-backendconfig"}
+    {{- end }}
 spec:
   type: ClusterIP
   selector:
     app: {{ include "my-express-app.name" . }}
   ports:
     - protocol: TCP
-      port: {{ .Values.service.port }}       # 80
+      port: {{ .Values.service.port }}        # 80
       targetPort: {{ .Values.service.targetPort }} # 8080
-
