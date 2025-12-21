@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/ishan706045-design/charts
     targetRevision: main
-    path: .
+    path: backend
     helm:
       valueFiles:
         - values-staging.yaml
