@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: asia-south1-docker.pkg.dev/learning-481011/k8-final/k8-final-prod
   pullPolicy: Always
-  tag: b8ab359
+  tag: 8e37001
 service:
   type: ClusterIP
   port: 80
@@ -46,4 +46,4 @@ hpa:
 backendConfig:
   enabled: true
   healthCheckPath: /api/health
-  port: 8080  
+  port: 8080
